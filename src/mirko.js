@@ -10,8 +10,9 @@ $(window).scroll(function() {
     let items=$('.comments-stream');
     $.get('https://www.wykop.pl/mikroblog/hot/strona/2/').done((secondPageItems)=>{
       console.log(items);
-      console.log($.parseHTML(secondPageItems));
-      window.seconPageItems = secondPageItems;
+      let secondPage = $.parseHTML(secondPageItems);
+
+      window.seconPage = secondPage;
 
     });
 
