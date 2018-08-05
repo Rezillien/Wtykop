@@ -13,7 +13,12 @@ $(document).ready(()=>{
 
 async function asyncAppendList(){
   $(window.appendAfter).after(
-    $('<div class="'+ window.appendTemplate + window.pageCounter +'"></div>').load('https://www.wykop.pl/mikroblog/hot/strona/' + window.pageCounter + '/ .comments-stream'));
+    $('<div class="'+ window.appendTemplate + window.pageCounter +'"></div>')
+      .load('https://www.wykop.pl/mikroblog/hot/strona/' + window.pageCounter + '/ .comments-stream')
+     );
+  $('.lazy').each(function() {
+    $(this).attr('src',$(this).attr('data-original'));
+  });
   window.appendAfter = '.' + window.appendTemplate + window.pageCounter;
   window.pageCounter++;
 }
