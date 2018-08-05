@@ -1,0 +1,51 @@
+{
+	"manifest_version": 2,
+	"name": "wtykop",
+	"version": "0.0.1",
+	"description": "wykop plug-in",
+	"author": "Rezillien",
+	"minimum_chrome_version": "64",
+	"minimum_opera_version": "51",
+	"icons": {
+		"16": "images/wtykop_icon16.png",
+    "32": "images/wtykop_icon32.png",
+    "48": "images/wtykop_icon48.png",
+    "128": "images/wtykop_icon128.png"
+	},
+	"page_action": {
+		"default_icon": {
+      "16": "images/wtykop_icon16.png",
+      "32": "images/wtykop_icon32.png",
+      "48": "images/wtykop_icon48.png",
+      "128": "images/wtykop_icon128.png"
+		}
+	},
+	"background": {
+		"scripts": [
+			"src/background.js"
+		]
+	},
+	"content_scripts": [{
+		"matches": [
+			"https://*.wykop.pl/mikroblog/*"
+		],
+		"js": [
+      "node_modules/jquery/dist/jquery.js",
+			"src/mirko.js"
+		],
+		"css": [
+			"src/css/mirko.scss"
+		],
+		"run_at": "document_start"
+	}],
+	"permissions": [
+		"https://*.wykop.pl/mikroblog/*",
+		"cookies",
+		"identity",
+		"tabs",
+		"history",
+		"storage",
+		"unlimitedStorage",
+		"webRequest"
+	]
+}
