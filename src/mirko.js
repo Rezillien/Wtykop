@@ -16,14 +16,17 @@ async function asyncAppendList(){
     $('<div class="'+ window.appendTemplate + window.pageCounter +'"></div>')
       .load('https://www.wykop.pl/mikroblog/hot/strona/' + window.pageCounter + '/ .comments-stream')
      );
-  $('.lazy').each(function() {
-    $(this).attr('src',$(this).attr('data-original'));
-  });
+
   window.appendAfter = '.' + window.appendTemplate + window.pageCounter;
   window.pageCounter++;
 }
 
 $(window).scroll(function() {
+  if($(window).scrollTop()%500<20){
+    $('.lazy:not([src])').each(function() {
+      $(this).attr('src',$(this).attr('data-original'));
+    });
+  }
   if(!window.bottomFlag && $(window).scrollTop() + $(window).height() > $(document).height() - 500) {
     window.bottomFlag = true;
     setTimeout(()=>{window.bottomFlag=false;},1000);
